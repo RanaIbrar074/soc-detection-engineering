@@ -2,37 +2,45 @@
 
 ## Overview
 
-Detection validation is used to verify that SOC detection rules generate the expected alerts, provide sufficient investigation context, and minimize unnecessary false positives.
+Detection validation is the process of verifying that security detections behave as expected and generate useful alerts when the corresponding activity occurs.
 
-## Validation Objectives
+A detection should not be considered complete simply because the rule exists. It should be tested against realistic security events, validated for expected severity, checked for false positives, and documented with sufficient evidence.
 
-- Verify detection logic
-- Confirm alert generation
-- Validate alert severity
-- Check event visibility
-- Test detection reliability
-- Identify false positives
-- Validate MITRE ATT&CK mapping
-- Confirm investigation context
-- Validate response actions where applicable
+This directory documents the validation methodology used for SOC detection engineering.
 
-## Validation Workflow
+---
+
+## Detection Validation Lifecycle
 
 ```text
 Detection Rule
-      ↓
-Controlled Test Activity
-      ↓
-Telemetry Generated
-      ↓
-Wazuh Collection
-      ↓
-Detection Triggered
-      ↓
-SOC Alert
-      ↓
-Alert Investigation
-      ↓
-Validation Result
-      ↓
-Detection Improvement
+      |
+      v
+Test Scenario
+      |
+      v
+Generate Security Event
+      |
+      v
+Collect Telemetry
+      |
+      v
+Wazuh Detection
+      |
+      v
+Validate Rule Match
+      |
+      v
+Review Alert
+      |
+      v
+False Positive Analysis
+      |
+      v
+Tune Detection
+      |
+      v
+Retest
+      |
+      v
+Document Result
